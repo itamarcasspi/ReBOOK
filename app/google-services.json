@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "818131943422",
+    "firebase_url": "https://rebook-7f714-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rebook-7f714",
+    "storage_bucket": "rebook-7f714.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818131943422:android:e65c06ff1c3bf4d2b04aaf",
+        "android_client_info": {
+          "package_name": "com.example.myproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818131943422-knuqnm7uu8136i80008hkq6oh0vdlrft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myproject",
+            "certificate_hash": "9c1e63011526af7eb667452a15eef9872a8fd4da"
+          }
+        },
+        {
+          "client_id": "818131943422-7qd153482dm92besdqls8enereck7njq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB31AXZ8EjibUC0Y_VyjyDZ2Tdocpt9Fs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818131943422-7qd153482dm92besdqls8enereck7njq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
