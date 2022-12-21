@@ -1,6 +1,5 @@
 package com.example.myproject;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,8 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class myListed extends AppCompatActivity implements View.OnClickListener{
-    TextView menu_btn;
+public class searchOutput extends AppCompatActivity implements View.OnClickListener{
+    TextView menu_btn, search_string;
     RecyclerView recyclerView;
     DatabaseReference database;
     BookAdapter adapter;
@@ -31,16 +30,29 @@ public class myListed extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_listed);
+        setContentView(R.layout.activity_search_output);
 
-        menu_btn = findViewById(R.id.mybooks_menu);
+        menu_btn = findViewById(R.id.SEARCHRESULT_menu);
         menu_btn.setOnClickListener(this);
 
-        recyclerView = findViewById(R.id.MY_BOOK_LST);
+
+        recyclerView = findViewById(R.id.SEARCH_BOOK_LST);
         database = FirebaseDatabase.getInstance().getReference("Books");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Extract the search parameters from serach page:
+        Intent get_intent = getIntent();
+        String search_value = get_intent.getStringExtra("value");
+        String search_parm = get_intent.getStringExtra("param");
+
+        //Display what was the search input from previous activity.
+        search_string = (TextView)findViewById(R.id.search_result_string);
+        search_string.setText("Showing result for - " + search_value);
+
+
+
+        //Create a booklist of all the relevant books for the search input.
         booklist = new ArrayList<>();
         adapter = new BookAdapter(this,booklist);
         recyclerView.setAdapter(adapter);
@@ -52,7 +64,7 @@ public class myListed extends AppCompatActivity implements View.OnClickListener{
                 {
 
                     Book book = dataSnapshot.getValue(Book.class);
-                    if(book.userID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    if(book.name.equals(search_value) || book.city.equals(search_value)) {
                         booklist.add(book);
                     }
                 }
@@ -71,9 +83,10 @@ public class myListed extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.mybooks_menu:
+            case R.id.SEARCHRESULT_menu:
                 finish();
                 break;
+
 
         }
 

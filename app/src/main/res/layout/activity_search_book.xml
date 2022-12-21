@@ -24,19 +24,30 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="597dp"
         android:background="@drawable/searchbar"
-        android:hint="Search input"
+        android:hint="Search for book name, or city!"
         android:padding="10dp"
         android:textAlignment="center"
         android:textColor="#969FE9"
         android:textColorHint="#969FE9" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/SEARCH_TO_MENU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="645dp"
+        android:text="MENU" />
+
+    <Button
+        android:id="@+id/SEARCHNOW_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
         android:text="FIND BOOKS" />
+
+
 
 </RelativeLayout>

@@ -23,6 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class giveBook extends AppCompatActivity implements View.OnClickListener{
     private Button give_btn;
     private Button menu_btn;
@@ -46,7 +51,7 @@ public class giveBook extends AppCompatActivity implements View.OnClickListener{
 
         BOOK_NAME = findViewById(R.id.give_book_name);
         BOOK_DESC = findViewById(R.id.give_book_description);
-//        BOOK_CITY = findViewById(R.id.city_list_dropdown);
+
 
         cityMenu = findViewById(R.id.city_list_dropdown);
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
@@ -96,9 +101,13 @@ public class giveBook extends AppCompatActivity implements View.OnClickListener{
             return;
 
         }
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMMM-yyyy");
+        String strDate = formatter.format(date);
 
-        Book newBook = new Book(book_name,book_desc,book_city,FirebaseAuth.getInstance().getCurrentUser().getUid());
         String unique_id = FirebaseDatabase.getInstance().getReference("Books").push().getKey();
+        Book newBook = new Book(book_name,book_desc,book_city, FirebaseAuth.getInstance().getCurrentUser().getUid(),strDate,unique_id);
+
         FirebaseDatabase.getInstance().getReference("Books")
                 .child(unique_id)
                 .setValue(newBook).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -108,7 +117,7 @@ public class giveBook extends AppCompatActivity implements View.OnClickListener{
                         if(task.isSuccessful())
                         {
                             Toast.makeText(giveBook.this,"Successfully posted.", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(giveBook.this, UserMenu.class));
+                            finish();
 
                         }
                         else

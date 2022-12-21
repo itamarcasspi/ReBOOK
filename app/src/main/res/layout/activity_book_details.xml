@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bookDetails">
+
+
+    <TextView
+        android:id="@+id/book_detail_NAME"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="78dp"
+        android:fontFamily="@font/poppins"
+        android:text="Harry potter"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="54dp" />
+
+    <TextView
+        android:id="@+id/book_detail_POSTER"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_detail_NAME"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="118dp"
+        android:fontFamily="@font/poppins"
+        android:text="Daniel" />
+
+    <TextView
+        android:id="@+id/book_detail_DATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="146dp"
+        android:fontFamily="@font/poppins"
+        android:text="Posted on 19-December-2022," />
+
+    <TextView
+        android:id="@+id/book_detail_DESC"
+        android:layout_width="357dp"
+        android:layout_height="385dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="215dp"
+        android:fontFamily="@font/poppins"
+        android:text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nibh odio, commodo eget elit vitae, luctus scelerisque mauris. Suspendisse potenti. Aliquam egestas enim est, et fringilla quam rhoncus eget. Cras eleifend elit in leo ullamcorper accumsan. Suspendisse volutpat magna quis arcu posuere pretium. Vestibulum a sem id tortor molestie porta. Nunc nec felis eu massa iaculis posuere. Curabitur hendrerit tortor urna, finibus tempus purus eleifend a. Pellentesque et pretium ligula, eu tempor sem.
+
+"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/book_detail_RETURN"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/back_icon" />
+
+    <ImageView
+        android:id="@+id/book_detail_DELETE"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/trashcan" />
+
+    <TextView
+        android:id="@+id/book_detail_PHONE"
+        android:layout_width="269dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="69dp"
+        android:layout_marginBottom="49dp"
+        android:text="053-7757408"
+        android:textSize="20dp"
+        android:gravity="center"
+
+        android:elegantTextHeight="true"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins"
+        android:textAlignment="center"
+
+
+        android:background="@drawable/purple_rectangle" />
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginBottom="55dp"
+        app:srcCompat="@drawable/phone_" />
+
+    <TextView
+        android:id="@+id/book_detail_CITY"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/book_detail_NAME"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="233dp"
+        android:layout_marginTop="146dp"
+        android:fontFamily="@font/poppins"
+        android:text="Tel-Aviv" />
+
+
+</RelativeLayout>

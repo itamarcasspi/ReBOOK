@@ -65,7 +65,7 @@ public class allBooks extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.allbooks_menu:
-                startActivity(new Intent(allBooks.this, UserMenu.class));
+                finish();
                 break;
         }
     }

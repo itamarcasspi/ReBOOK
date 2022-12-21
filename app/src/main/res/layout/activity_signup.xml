@@ -74,7 +74,7 @@
         android:textColorHint="@color/black" />
 
     <EditText
-        android:id="@+id/second_name"
+        android:id="@+id/phone_number"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_below="@+id/first_name"
@@ -83,7 +83,7 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/rectangle1"
         android:fontFamily="@font/poppins"
-        android:hint="Second name"
+        android:hint="Phone number"
         android:padding="25dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
@@ -92,7 +92,7 @@
         android:id="@+id/signup_btn"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_below="@+id/second_name"
+        android:layout_below="@+id/phone_number"
         android:layout_alignParentEnd="true"
 
         android:layout_centerHorizontal="true"

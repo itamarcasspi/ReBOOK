@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 public class UserMenu extends AppCompatActivity implements View.OnClickListener {
-    private Button logout_btn,givebook_btn,getbook_btn,mybooks_btn;
+    private Button logout_btn,givebook_btn,getbook_btn,mybooks_btn,search_btn;
     private DatabaseReference reference;
     private FirebaseUser user;
     private String userID;
@@ -29,6 +29,7 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
+
         logout_btn = findViewById(R.id.LOGOUT_BTN);
         logout_btn.setOnClickListener(this);
 
@@ -40,6 +41,9 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
 
         mybooks_btn = findViewById(R.id.myBooks_button);
         mybooks_btn.setOnClickListener(this);
+
+        search_btn = findViewById(R.id.searchpage_button);
+        search_btn.setOnClickListener(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -75,7 +79,7 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
         {
             case R.id.LOGOUT_BTN:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(UserMenu.this, MainActivity.class));
+                finish();
                 break;
             case R.id.giveBook_button:
                 startActivity(new Intent(UserMenu.this, giveBook.class));
@@ -87,6 +91,10 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
             case R.id.myBooks_button:
                 startActivity(new Intent(UserMenu.this, myListed.class));
                 break;
+
+            case R.id.searchpage_button:
+                startActivity(new Intent(UserMenu.this, searchBook.class));
+
 
         }
 

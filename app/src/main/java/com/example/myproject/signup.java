@@ -35,7 +35,7 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth mAuth;
     private AppBarConfiguration appBarConfiguration;
     private ActivitySignupBinding binding;
-    private EditText TextEmail,TextPassword,Text_first_name,Text_last_name;
+    private EditText TextEmail,TextPassword,Text_first_name,Text_phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +50,14 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
 
 
         mAuth = FirebaseAuth.getInstance();
+
         sign_up = (Button) findViewById(R.id.signup_btn);
         sign_up.setOnClickListener(this);
 
         TextEmail = (EditText) findViewById(R.id.email);
         TextPassword = (EditText) findViewById(R.id.password);
         Text_first_name = (EditText) findViewById(R.id.first_name);
-        Text_last_name = (EditText) findViewById(R.id.second_name);
+        Text_phone = (EditText) findViewById(R.id.phone_number);
 
     }
 
@@ -65,7 +66,8 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.signin_refferal:
-                startActivity(new Intent(this,MainActivity.class));
+//                startActivity(new Intent(this,MainActivity.class));
+                finish();
                 break;
 
             case R.id.signup_btn:
@@ -79,7 +81,8 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
         String email = TextEmail.getText().toString().trim();
         String password = TextPassword.getText().toString().trim();
         String first_name = Text_first_name.getText().toString().trim();
-        String last_name = Text_last_name.getText().toString().trim();
+        String phone_number = Text_phone.getText().toString().trim();
+
 
         if(email.isEmpty())
         {
@@ -117,20 +120,24 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
             return;
 
         }
-        if(last_name.isEmpty())
+        if(phone_number.isEmpty())
         {
-            Text_last_name.setError("Last name field is empty");
-            Text_last_name.requestFocus();
+            Text_phone.setError("Last name field is empty");
+            Text_phone.requestFocus();
             return;
 
         }
+
+        String regular_privilege = "0";
+
+
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            User new_user = new User(email,password,first_name,last_name);
+                            User new_user = new User(email,password,first_name,phone_number,regular_privilege);
 
 
                             FirebaseDatabase.getInstance().getReference("Users")
@@ -142,6 +149,8 @@ public class signup extends AppCompatActivity implements View.OnClickListener{
                                             if(task.isSuccessful())
                                             {
                                                 Toast.makeText(signup.this,"Successfully registered.", Toast.LENGTH_LONG).show();
+//                                                startActivity(new Intent(signup.this,MainActivity.class));
+                                                finish();
                                             }
                                             else
                                             {

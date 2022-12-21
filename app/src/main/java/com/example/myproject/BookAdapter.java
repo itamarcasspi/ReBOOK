@@ -1,6 +1,7 @@
 package com.example.myproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         Book book = booklist.get(position);
         holder.bookName.setText(book.name);
         holder.bookCity.setText(book.city);
+        holder.book_id = book.post_id;
+
     }
 
     @Override
@@ -43,9 +46,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         return booklist.size();
     }
 
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView bookName,bookCity;
+        String book_id;
+
 
 
         public MyViewHolder(@NonNull View v)
@@ -53,7 +59,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
             super(v);
             bookName = v.findViewById(R.id.ITEM_BOOKNAME);
             bookCity = v.findViewById(R.id.ITEM_CITY);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(v.getContext(),bookDetails.class);
+                    intent.putExtra("book_id",book_id);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
+
+
 
     }
 
