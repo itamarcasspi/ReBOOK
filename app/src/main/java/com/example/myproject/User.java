@@ -3,6 +3,7 @@ package com.example.myproject;
 public class User {
     public String email,password,first_name,phone_num,privilege;
 
+
     public User()
     {
 

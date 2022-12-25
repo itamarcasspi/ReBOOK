@@ -91,4 +91,55 @@ public class searchOutput extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_btn = findViewById(R.id.SEARCHRESULT_menu);
+        menu_btn.setOnClickListener(this);
+
+
+        recyclerView = findViewById(R.id.SEARCH_BOOK_LST);
+        database = FirebaseDatabase.getInstance().getReference("Books");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Extract the search parameters from serach page:
+        Intent get_intent = getIntent();
+        String search_value = get_intent.getStringExtra("value");
+        String search_parm = get_intent.getStringExtra("param");
+
+        //Display what was the search input from previous activity.
+        search_string = (TextView)findViewById(R.id.search_result_string);
+        search_string.setText("Showing result for - " + search_value);
+
+
+
+        //Create a booklist of all the relevant books for the search input.
+        booklist = new ArrayList<>();
+        adapter = new BookAdapter(this,booklist);
+        recyclerView.setAdapter(adapter);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+
+                    Book book = dataSnapshot.getValue(Book.class);
+                    if(book.name.equals(search_value) || book.city.equals(search_value)) {
+                        booklist.add(book);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
 }

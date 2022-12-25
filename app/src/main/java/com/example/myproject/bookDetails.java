@@ -28,7 +28,7 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
     private ImageView back_btn, delete_btn;
 //    private Book this_book;
     private TextView BOOK_NAME,BOOK_DESC,BOOK_CITY, POSTER_NAME,POSTER_PHONE,POST_DATE;
-    private String post_ID,curr_user_ID;
+    private String post_ID,curr_user_ID,user_priv;
     private Spinner cityMenu;
     private DatabaseReference reference;
     private FirebaseUser user;
@@ -57,6 +57,33 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
         POSTER_PHONE = findViewById(R.id.book_detail_PHONE);
 
 
+        curr_user_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference reference_users = FirebaseDatabase.getInstance().getReference("Users");
+
+        //find out curr user's privilege
+        reference_users.child(curr_user_ID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+
+                if(userProfile != null)
+                {
+                    if(userProfile.privilege.equals("1"))
+                    {
+
+                        delete_btn.setVisibility(View.VISIBLE);
+                        delete_btn.setOnClickListener(bookDetails.this);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(bookDetails.this,"Something went wrong!", Toast.LENGTH_LONG).show();
+            }
+        });
+
         Intent prev_int = getIntent();
         post_ID = prev_int.getStringExtra("book_id");
 //        BOOK_NAME.setText(post_ID);
@@ -66,11 +93,7 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Book this_book = snapshot.getValue(Book.class);
 
-                if (this_book.userID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                {
-                    delete_btn.setVisibility(View.VISIBLE);
-                    delete_btn.setOnClickListener(bookDetails.this);
-                }
+
 
                 if(this_book != null)
                 {
@@ -90,6 +113,7 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
                                     {
                                         POSTER_NAME.setText(userProfile.first_name);
                                         POSTER_PHONE.setText(userProfile.phone_num);
+
                                     }
                                 }
 
@@ -99,6 +123,12 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
 
                                 }
                             });
+                }
+                //user_priv = 1 -> user is an admin
+                if (this_book.userID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+                    delete_btn.setVisibility(View.VISIBLE);
+                    delete_btn.setOnClickListener(bookDetails.this);
                 }
             }
 
@@ -130,5 +160,11 @@ public class bookDetails extends AppCompatActivity implements View.OnClickListen
 
 
 
+
+
 }
+
+
+
+
 

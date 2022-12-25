@@ -69,4 +69,39 @@ public class allBooks extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recyclerView = findViewById(R.id.BOOK_LST);
+        database = FirebaseDatabase.getInstance().getReference("Books");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        menu_btn = findViewById(R.id.allbooks_menu);
+        menu_btn.setOnClickListener(this);
+
+        booklist = new ArrayList<>();
+        adapter = new BookAdapter(this,booklist);
+        recyclerView.setAdapter(adapter);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Book book = dataSnapshot.getValue(Book.class);
+                    booklist.add(book);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
 }

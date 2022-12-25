@@ -10,6 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 
@@ -37,6 +42,27 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         Book book = booklist.get(position);
         holder.bookName.setText(book.name);
         holder.bookCity.setText(book.city);
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child((book.userID))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User userProfile = snapshot.getValue(User.class);
+
+                        if (userProfile != null) {
+                            String name = userProfile.first_name;
+
+                            holder.bookPoster.setText(name);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+//        holder.bookPoster.setText();
         holder.book_id = book.post_id;
 
     }
@@ -49,7 +75,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bookName,bookCity;
+        TextView bookName,bookCity, bookPoster;
         String book_id;
 
 
@@ -59,6 +85,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
             super(v);
             bookName = v.findViewById(R.id.ITEM_BOOKNAME);
             bookCity = v.findViewById(R.id.ITEM_CITY);
+            bookPoster = v.findViewById(R.id.ITEM_USER);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

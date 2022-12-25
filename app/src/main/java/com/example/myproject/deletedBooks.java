@@ -1,15 +1,12 @@
 package com.example.myproject;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,18 +19,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class myListed extends AppCompatActivity implements View.OnClickListener{
+public class deletedBooks extends AppCompatActivity implements View.OnClickListener {
     TextView menu_btn;
     RecyclerView recyclerView;
     DatabaseReference database;
     BookAdapter adapter;
     ArrayList<Book> booklist;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_listed);
-
+        setContentView(R.layout.activity_deleted_books);
         menu_btn = findViewById(R.id.mybooks_menu);
         menu_btn.setOnClickListener(this);
 
@@ -62,7 +59,7 @@ public class myListed extends AppCompatActivity implements View.OnClickListener{
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(myListed.this,"Something went wrong!", Toast.LENGTH_LONG).show();
+                Toast.makeText(deletedBooks.this,"Something went wrong!", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -113,10 +110,11 @@ public class myListed extends AppCompatActivity implements View.OnClickListener{
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(myListed.this,"Something went wrong!", Toast.LENGTH_LONG).show();
+                Toast.makeText(deletedBooks.this,"Something went wrong!", Toast.LENGTH_LONG).show();
 
             }
         });
 
     }
+
 }
