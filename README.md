@@ -10,11 +10,8 @@
 
 ### General information:
 
-#### Types of users:
 
-### Application screens:
-
-
+## Application screens:
 ### Login screen- The start activity:
 On this screen you can connect to the system- if you hava an acoount by using an email address and password, 
 if you have not verified the email account you will not be able to log in until you do so.
