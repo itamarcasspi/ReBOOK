@@ -5,8 +5,8 @@
 ## ReBOOK is Here for you!!
 
 
+![לוגו כתב סגול](https://user-images.githubusercontent.com/92533182/211387332-988b94f7-3e8a-4a21-b7d8-339f4951e92f.jpg)
 
-![logo](https://user-images.githubusercontent.com/92533182/209552704-a6bac0d9-7740-47a3-ae83-d2116b943c5c.png)
 
 ### General information:
 
