@@ -19,6 +19,7 @@
         android:text="Harry potter"
         android:textSize="22dp"
         android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="54dp" />
 
@@ -48,8 +49,8 @@
 
     <TextView
         android:id="@+id/book_detail_DESC"
-        android:layout_width="357dp"
-        android:layout_height="385dp"
+        android:layout_width="360dp"
+        android:layout_height="284dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
@@ -59,6 +60,8 @@
 
 "
         android:textStyle="bold" />
+
+
 
     <ImageView
         android:id="@+id/book_detail_RETURN"
@@ -82,7 +85,29 @@
         app:srcCompat="@drawable/trashcan" />
 
     <TextView
-        android:id="@+id/book_detail_PHONE"
+        android:id="@+id/forfeit_book"
+        android:layout_width="298dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle1"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+
+        android:text="Forfeit book"
+        android:textAlignment="center"
+        android:textColor="#A70101"
+        android:textSize="20dp"
+
+
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/take_book_details"
         android:layout_width="269dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -90,8 +115,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="69dp"
         android:layout_marginBottom="49dp"
-        android:text="053-7757408"
+        android:text="Take book"
         android:textSize="20dp"
+        android:visibility="invisible"
         android:gravity="center"
 
         android:elegantTextHeight="true"
@@ -102,14 +128,27 @@
 
         android:background="@drawable/purple_rectangle" />
 
-    <ImageView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+    <TextView
+        android:id="@+id/mark_as_taken"
+        android:layout_width="309dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="91dp"
-        android:layout_marginBottom="55dp"
-        app:srcCompat="@drawable/phone_" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/new_rectangle"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+
+        android:text="Mark as taken"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+
+
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/book_detail_CITY"
@@ -123,6 +162,63 @@
         android:layout_marginTop="146dp"
         android:fontFamily="@font/poppins"
         android:text="Tel-Aviv" />
+
+    <TextView
+        android:id="@+id/book_delete_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="-3dp"
+        android:fontFamily="@font/poppins"
+        android:text="Are you sure you want to delete this book's listing?"
+        android:textSize="24dp"
+        android:visibility="invisible" />
+
+
+    <TextView
+        android:id="@+id/TAKER_PHONE"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="532dp"
+        android:fontFamily="@font/poppins"
+        android:text="Contact num- 0541234123"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/white"
+        android:background="@drawable/purple_rectangle"
+
+        android:textStyle="bold"
+         />
+
+    <TextView
+        android:id="@+id/PHONE_NUM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="173dp"
+        android:text="0541234123"
+        android:visibility="invisible"
+        android:fontFamily="@font/poppins"
+        />
+
+    <Button
+        android:id="@+id/ban_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:visibility="invisible"
+        android:backgroundTint="#D02A2A"
+        android:text="ban user" />
 
 
 </RelativeLayout>

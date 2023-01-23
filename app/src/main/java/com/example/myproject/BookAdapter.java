@@ -2,6 +2,7 @@ package com.example.myproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
         Book book = booklist.get(position);
         holder.bookName.setText(book.name);
         holder.bookCity.setText(book.city);
+
+        if(!book.taken_by.equals("none"))
+        {
+            holder.bookName.setTextColor(Color.RED);
+        }
 
         FirebaseDatabase.getInstance().getReference("Users")
                 .child((book.userID))
@@ -86,6 +92,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
             bookName = v.findViewById(R.id.ITEM_BOOKNAME);
             bookCity = v.findViewById(R.id.ITEM_CITY);
             bookPoster = v.findViewById(R.id.ITEM_USER);
+
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

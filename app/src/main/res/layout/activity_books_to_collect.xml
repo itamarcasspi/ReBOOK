@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#969FE9"
-
-    tools:context=".myListed">
+    tools:context=".booksToCollect">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MY_BOOK_LST"
         android:layout_width="match_parent"
-        android:layout_height="514dp"
+        android:layout_height="423dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="80dp" />
 
@@ -32,25 +31,23 @@
     <TextView
         android:layout_width="276dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="601dp"
-        android:fontFamily="@font/poppins"
-        android:text="*Books marked in red are taken by a user!"
-        android:textSize="14dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="276dp"
-        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
         android:fontFamily="@font/poppins"
-        android:text="   My listed books!"
+        android:text="Books to borrow"
         android:textSize="28dp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="181dp"
+        android:text="*Note that you can only mark 4 books to borrow at any given time." />
 
 
 </RelativeLayout>

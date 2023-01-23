@@ -106,7 +106,9 @@ public class giveBook extends AppCompatActivity implements View.OnClickListener{
         String strDate = formatter.format(date);
 
         String unique_id = FirebaseDatabase.getInstance().getReference("Books").push().getKey();
-        Book newBook = new Book(book_name,book_desc,book_city, FirebaseAuth.getInstance().getCurrentUser().getUid(),strDate,unique_id);
+        String taken_by = "none";
+        Book newBook = new Book(book_name,book_desc,book_city,
+                FirebaseAuth.getInstance().getCurrentUser().getUid(),strDate,unique_id,taken_by);
 
         FirebaseDatabase.getInstance().getReference("Books")
                 .child(unique_id)

@@ -21,10 +21,12 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 public class UserMenu extends AppCompatActivity implements View.OnClickListener {
-    private Button logout_btn,givebook_btn,getbook_btn,mybooks_btn,search_btn;
+    private TextView logout_btn,givebook_btn,getbook_btn,mybooks_btn,pending_btn
+            ,books_taken,books_given;
     private DatabaseReference reference;
     private FirebaseUser user;
     private String userID;
+    private User userProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,25 +44,36 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
         mybooks_btn = findViewById(R.id.myBooks_button);
         mybooks_btn.setOnClickListener(this);
 
-        search_btn = findViewById(R.id.searchpage_button);
-        search_btn.setOnClickListener(this);
+        pending_btn = findViewById(R.id.PENDING_BOOKS);
+        pending_btn.setOnClickListener(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
         final TextView greeting_name = (TextView)findViewById(R.id.first_name_greet);
+        final TextView books_taken = findViewById(R.id.BOOKS_TAKEN);
+        final TextView books_given = findViewById(R.id.BOOKS_GIVEN);
+        final TextView books_pending = findViewById(R.id.BOOKS_TO_TAKE);
+        final TextView books_waiting = findViewById(R.id.BOOKS_TO_GIVE);
 
         reference.child((userID)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
+                userProfile = snapshot.getValue(User.class);
 
                 if(userProfile != null)
                 {
                     String name = userProfile.first_name;
 
                     greeting_name.setText("Welcome, "+name+"!");
+                    books_taken.setText("Books taken: "+userProfile.books_took);
+                    books_given.setText("Books given: "+userProfile.books_given);
+                    books_pending.setText("Books to take: "+userProfile.books_to_take);
+                    books_waiting.setText("Books to give: "+userProfile.books_to_give);
+
+
+
                 }
             }
 
@@ -92,11 +105,68 @@ public class UserMenu extends AppCompatActivity implements View.OnClickListener 
                 startActivity(new Intent(UserMenu.this, myListed.class));
                 break;
 
-            case R.id.searchpage_button:
-                startActivity(new Intent(UserMenu.this, searchBook.class));
+            case R.id.PENDING_BOOKS:
+                startActivity(new Intent(UserMenu.this, booksToCollect.class));
 
 
         }
 
     }
+
+    @Override
+    protected void onRestart() {
+
+        super.onRestart();
+        logout_btn = findViewById(R.id.LOGOUT_BTN);
+        logout_btn.setOnClickListener(this);
+
+        givebook_btn=findViewById(R.id.giveBook_button);
+        givebook_btn.setOnClickListener(this);
+
+        getbook_btn = findViewById(R.id.getBook_button);
+        getbook_btn.setOnClickListener(this);
+
+        mybooks_btn = findViewById(R.id.myBooks_button);
+        mybooks_btn.setOnClickListener(this);
+
+        pending_btn = findViewById(R.id.PENDING_BOOKS);
+        pending_btn.setOnClickListener(this);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
+
+        final TextView greeting_name = (TextView)findViewById(R.id.first_name_greet);
+        final TextView books_taken = findViewById(R.id.BOOKS_TAKEN);
+        final TextView books_given = findViewById(R.id.BOOKS_GIVEN);
+        final TextView books_pending = findViewById(R.id.BOOKS_TO_TAKE);
+        final TextView books_waiting = findViewById(R.id.BOOKS_TO_GIVE);
+
+        reference.child((userID)).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userProfile = snapshot.getValue(User.class);
+
+                if(userProfile != null)
+                {
+                    String name = userProfile.first_name;
+
+                    greeting_name.setText("Welcome, "+name+"!");
+                    books_taken.setText("Books taken: "+userProfile.books_took);
+                    books_given.setText("Books given: "+userProfile.books_given);
+                    books_pending.setText("Books to take: "+userProfile.books_to_take);
+                    books_waiting.setText("Books to give: "+userProfile.books_to_give);
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(UserMenu.this,"Something went wrong!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }
